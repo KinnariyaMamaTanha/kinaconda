@@ -1,11 +1,10 @@
 local M = {}
 local Job = require('plenary.job')
-local init = require("kinaconda.init")
 -- Function to deactivate conda environment
-function M.deactivate_conda_env()
+function M.deactivate_conda_env(conda_sh_path)
     local shell_command = string.format([[
     source %s && conda deactivate && env
-  ]], init.conda_sh_path)
+  ]], conda_sh_path)
 
     Job:new({
         command = 'bash',

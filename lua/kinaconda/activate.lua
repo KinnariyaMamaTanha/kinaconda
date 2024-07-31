@@ -1,11 +1,10 @@
 local M = {}
 local Job = require('plenary.job')
-local init = require("kinaconda.init")
 -- Function to switch conda environment
-function M.activate_conda_env(env_name)
+function M.activate_conda_env(env_name, conda_sh_path)
     local shell_command = string.format([[
     source %s && conda activate %s && env
-  ]], init.conda_sh_path, env_name)
+  ]], conda_sh_path, env_name)
 
     Job:new({
         command = 'bash',

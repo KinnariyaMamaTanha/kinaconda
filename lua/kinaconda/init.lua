@@ -3,9 +3,9 @@ local activate_conda_env = require("kinaconda.activate").activate_conda_env
 local deactivate_conda_env = require("kinaconda.deactivate").deactivate_conda_env
 local get_conda_envs = require("kinaconda.get_envs").get_conda_envs
 
-if vim.fn.isdirectory(vim.fn.expand("~/anaconda3")) then
+if vim.fn.isdirectory(vim.fn.expand("~/anaconda3")) == 1 then
     M.conda_path = '~/anaconda3'
-elseif vim.fn.isdirectory(vim.fn.expand("~/miniconda3")) then
+elseif vim.fn.isdirectory(vim.fn.expand("~/miniconda3")) == 1 then
     M.conda_path = '~/miniconda3'
 end
 M.conda_sh_path = M.conda_path .. '/etc/profile.d/conda.sh'
@@ -27,7 +27,7 @@ M.setup = function(options)
                     attach_mappings = function(prompt_bufnr, map)
                         local function set_env(close)
                             local selection = require('telescope.actions.state').get_selected_entry()
-                            activate_conda_env(selection[1])
+                            activate_conda_env(selection[1], M.conda_sh_path)
                             if close then
                                 require('telescope.actions').close(prompt_bufnr)
                             end
@@ -46,13 +46,13 @@ M.setup = function(options)
                 }):find()
             end)
         else
-            activate_conda_env(opts.args)
+            activate_conda_env(opts.args, M.conda_sh_path)
         end
     end, { nargs = '?' })
 
     -- Create a command in Neovim to deactivate Conda environment
     vim.api.nvim_create_user_command('CondaDeactivate', function()
-        deactivate_conda_env()
+        deactivate_conda_env(M.conda_sh_path)
     end, {})
 end
 
