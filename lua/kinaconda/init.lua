@@ -2,6 +2,7 @@ local M = {}
 local activate_conda_env = require("kinaconda.activate").activate_conda_env
 local deactivate_conda_env = require("kinaconda.deactivate").deactivate_conda_env
 local get_conda_envs = require("kinaconda.get_envs").get_conda_envs
+local conf = require("telescope.config").values
 
 if vim.fn.isdirectory(vim.fn.expand("~/anaconda3")) == 1 then
     M.conda_path = '~/anaconda3'
@@ -23,7 +24,7 @@ M.setup = function(options)
                     finder = require('telescope.finders').new_table({
                         results = envs,
                     }),
-                    sorter = require('telescope.sorters').get_generic_fuzzy_sorter(),
+                    sorter = conf.generic_sorter({}),
                     attach_mappings = function(prompt_bufnr, map)
                         local function set_env(close)
                             local selection = require('telescope.actions.state').get_selected_entry()
