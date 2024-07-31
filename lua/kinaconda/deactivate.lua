@@ -1,7 +1,8 @@
+local M = {}
 local Job = require('plenary.job')
 local init = require("init")
 -- Function to deactivate conda environment
-function deactivate_conda_env()
+function M.deactivate_conda_env()
     local shell_command = string.format([[
     source %s && conda deactivate && env
   ]], init.conda_sh_path)
@@ -35,3 +36,5 @@ function deactivate_conda_env()
         end),
     }):start()
 end
+
+return M

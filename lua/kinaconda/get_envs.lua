@@ -1,6 +1,7 @@
+local M = {}
 local Job = require('plenary.job')
 -- Function to get conda environments
-function get_conda_envs(callback)
+function M.get_conda_envs(callback)
     local envs = {}
     Job:new({
         command = 'conda',
@@ -21,3 +22,5 @@ function get_conda_envs(callback)
         end),
     }):start()
 end
+
+return M

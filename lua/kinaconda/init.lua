@@ -1,4 +1,7 @@
 local M = {}
+local activate_conda_env = require("kinaconda.activate").activate_conda_env
+local deactivate_conda_env = require("kinaconda.deactivate").deactivate_conda_env
+local get_conda_envs = require("kinaconda.get_envs").get_conda_envs
 
 if vim.fn.isdirectory(vim.fn.expand("~/anaconda3")) then
     M.conda_path = '~/anaconda3'

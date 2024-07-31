@@ -1,7 +1,8 @@
+local M = {}
 local Job = require('plenary.job')
 local init = require("init")
 -- Function to switch conda environment
-function activate_conda_env(env_name)
+function M.activate_conda_env(env_name)
     local shell_command = string.format([[
     source %s && conda activate %s && env
   ]], init.conda_sh_path, env_name)
@@ -35,3 +36,5 @@ function activate_conda_env(env_name)
         end),
     }):start()
 end
+
+return M

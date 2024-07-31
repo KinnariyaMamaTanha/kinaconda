@@ -19,13 +19,20 @@ Using lazy.nvim:
         "nvim-telescope/telescope.nvim",
         "neoclide/coc.nvim"
     },
-    ft = "python",
+    cmd = {
+        "CondaActivate",
+        "CondaDeactivate",
+    },
     opts = {
         -- conda_path = "~/miniconda3"
         -- default "~/miniconda3" or "~/anaconda3"
     }
 }
 ```
+
+## Configuration
+
+- `conda_path`: the directory where your conda installed.
 
 ## Commands
 
