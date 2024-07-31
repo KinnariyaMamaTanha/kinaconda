@@ -1,6 +1,6 @@
 local M = {}
 local Job = require('plenary.job')
-local init = require("init")
+local init = require("kinaconda.init")
 -- Function to switch conda environment
 function M.activate_conda_env(env_name)
     local shell_command = string.format([[

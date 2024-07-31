@@ -1,6 +1,6 @@
 local M = {}
 local Job = require('plenary.job')
-local init = require("init")
+local init = require("kinaconda.init")
 -- Function to deactivate conda environment
 function M.deactivate_conda_env()
     local shell_command = string.format([[
