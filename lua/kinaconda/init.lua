@@ -41,14 +41,6 @@ M.setup = function(options)
                             set_env(true)
                         end)
 
-                        map('i', '<LeftMouse>', function(bufnr)
-                            set_env(true)
-                        end)
-
-                        map('n', '<LeftMouse>', function(bufnr)
-                            set_env(true)
-                        end)
-
                         return true
                     end,
                 }):find()
